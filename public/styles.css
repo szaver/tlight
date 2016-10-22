@@ -20,7 +20,7 @@ body {
 }
 
 .status {
-    font-size: 4vw;
+    font-size: 8vw;
     font-family: sans-serif;
     /* background: rgba(255, 255, 255, 0.55); */
     padding: 5vh;
@@ -30,4 +30,8 @@ body {
 
 body {
     background: #444;
+}
+
+body.preview {
+    background: #006500;
 }
