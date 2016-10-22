@@ -1,0 +1,33 @@
+#indicator {
+  height: 20vh;
+  width: 100%;
+}
+#status {
+  font-size: 30px;
+}
+
+
+body.program {
+    background-color: rgba(189,0,0,0.5);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.status {
+    font-size: 4vw;
+    font-family: sans-serif;
+    /* background: rgba(255, 255, 255, 0.55); */
+    padding: 5vh;
+    /* text-shadow: 3px 1px 3px; */
+    color: white;
+}
+
+body {
+    background: #444;
+}
