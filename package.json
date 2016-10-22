@@ -1,0 +1,12 @@
+{
+  "name": "tlight",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "atem": "^0.1.7",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "socket.io": "^1.5.0"
+  }
+}
