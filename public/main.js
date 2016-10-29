@@ -21,8 +21,10 @@ socket.on('update', function(state) {
   console.log(state, id)
 
   // update indicator bar
-  if (state.program == id)
+  if (state.program == id) {
     document.body.classList.add('program')
+    document.body.classList.remove('preview')
+  }
   else if (state.preview == id)
     document.body.classList.add('preview')
 
