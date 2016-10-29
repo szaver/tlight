@@ -30,7 +30,7 @@ socket.on('update', function(state) {
 
   if (state.program != id)
     document.body.classList.remove('program')
-  else if (state.preview != id)
+  if (state.preview != id)
     document.body.classList.remove('preview')
 
   // update status text
