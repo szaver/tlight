@@ -19,7 +19,8 @@ class App extends Component {
         program: 0,
         preview: 0
       },
-      messages: []
+      messages: [],
+      fullHeader: true
     }
   }
   componentDidMount () {
@@ -36,10 +37,21 @@ class App extends Component {
     this.addMessage(message)
     socket.emit('chat message', message)
   }
+  toggleFullHeader () {
+    this.setState({fullHeader: !this.state.fullHeader})
+  }
   render () {
     return div('.appContainer', [
-      Header({cameraState: this.state.cameraState, cameraId: cameraId}),
-      Chat({messages: this.state.messages, onMessage: this.localMessage})
+      Header({
+        cameraState: this.state.cameraState,
+        cameraId: cameraId,
+        toggleFull: this.toggleFullHeader,
+        full: this.state.fullHeader
+      }),
+      Chat({
+        messages: this.state.messages,
+        onMessage: this.localMessage
+      })
     ])
   }
 }

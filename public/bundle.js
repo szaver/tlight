@@ -8060,7 +8060,8 @@ var App = (function (Component) {
         program: 0,
         preview: 0
       },
-      messages: []
+      messages: [],
+      fullHeader: true
     }
   }
 
@@ -8083,10 +8084,21 @@ var App = (function (Component) {
     this.addMessage(message)
     socket.emit('chat message', message)
   };
+  App.prototype.toggleFullHeader = function toggleFullHeader () {
+    this.setState({fullHeader: !this.state.fullHeader})
+  };
   App.prototype.render = function render () {
     return div('.appContainer', [
-      Header({cameraState: this.state.cameraState, cameraId: cameraId}),
-      Chat({messages: this.state.messages, onMessage: this.localMessage})
+      Header({
+        cameraState: this.state.cameraState,
+        cameraId: cameraId,
+        toggleFull: this.toggleFullHeader,
+        full: this.state.fullHeader
+      }),
+      Chat({
+        messages: this.state.messages,
+        onMessage: this.localMessage
+      })
     ])
   };
 
@@ -8121,30 +8133,32 @@ var div = ref.div;
 var createComponent = ref.createComponent;
 
 var names = {
-  0: '?',
-  1: 'Computer',
-  2: 'Camera 1',
-  3: 'Camera 2',
-  4: 'Camera 3',
-  5: 'Camera 4',
-  6: 'Leo-Marc',
-  7: 'Camera 6',
-  8: 'Camera 7',
-  9: 'Camera 8',
-  10: 'Camera 9'
+  0: 'Computer',
+  1: 'Camera 1',
+  2: 'Camera 2',
+  3: 'Camera 3',
+  4: 'Camera 4',
+  5: 'Leo-Marc',
+  6: 'Camera 6',
+  7: 'Camera 7',
+  8: 'Camera 8',
+  9: 'Camera 9'
 }
 
 var Header = function (ref) {
   var cameraState = ref.cameraState;
   var cameraId = ref.cameraId;
+  var full = ref.full;
+  var toggleFull = ref.toggleFull;
 
   var divClasses = {
     header: true,
+    full: full,
     preview: cameraState.preview === cameraId,
     program: cameraState.program === cameraId
   }
 
-  return div({class: divClasses}, [
+  return div({class: divClasses, onClick: toggleFull}, [
     div('.left', ("Preview: " + (names[cameraState.preview]))),
     div('.left', ("Program: " + (names[cameraState.program])))
   ])
