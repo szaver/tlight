@@ -29,8 +29,20 @@ io.on('connection', (socket) => {
   chatMessages.forEach(m => socket.emit('chat message', m))
 
   socket.on('chat message', message => {
-    socket.broadcast.emit('chat message', message)
-    chatMessages.push(message)
+    const parsedMsg = message.content.split(' ')
+
+    console.log(parsedMsg)
+
+    if (parsedMsg[0] === '/prog') {
+      console.log(`setting program to ${parsedMsg[1]}`)
+      atem.setProgram(parsedMsg[1] + 1)
+    } else if (parsedMsg[0] === '/prev') {
+      console.log(`setting preview to ${parsedMsg[1]}`)
+      atem.setPreview(parsedMsg[1] + 1)
+    } else {
+      socket.broadcast.emit('chat message', message)
+      chatMessages.push(message)
+    }
   })
 })
 
